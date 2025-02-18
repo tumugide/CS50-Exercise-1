@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define NUM_ITEMS 5
+#define NUM_ITEMS 10
 
 // Define a structure to hold the data
 typedef struct {
