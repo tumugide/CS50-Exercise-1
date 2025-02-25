@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NUM_ITEMS 5
+#define NUM_ITEMS 10
 
 // Function to calculate grade based on average marks
 char calculate_grade(int avg) {
