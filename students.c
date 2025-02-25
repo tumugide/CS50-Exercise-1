@@ -1,13 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#define NUM_ITEMS 10
-
-// Define a structure to hold the data
-typedef struct {
-    char name[50];
-    int subj1, subj2, subj3;
-    char grade;
-} Student;
+#define NUM_ITEMS 5
 
 // Function to calculate grade based on average marks
 char calculate_grade(int avg) {
@@ -19,24 +14,27 @@ char calculate_grade(int avg) {
 }
 
 int main() {
-    Student students[NUM_ITEMS];
+    char names[NUM_ITEMS][50];
+    int subj1[NUM_ITEMS], subj2[NUM_ITEMS], subj3[NUM_ITEMS];
+    char grades[NUM_ITEMS];
     
     // Input data
     for (int i = 0; i < NUM_ITEMS; i++) {
         printf("Enter details for student %d:\n", i + 1);
         printf("Name: ");
         getchar(); // To consume the leftover newline character
-        fgets(students[i].name, sizeof(students[i].name), stdin);
+        fgets(names[i], sizeof(names[i]), stdin);
+        names[i][strcspn(names[i], "\n")] = 0; // Remove newline character
         printf("Subject 1 marks: ");
-        scanf("%d", &students[i].subj1);
+        scanf("%d", &subj1[i]);
         printf("Subject 2 marks: ");
-        scanf("%d", &students[i].subj2);
+        scanf("%d", &subj2[i]);
         printf("Subject 3 marks: ");
-        scanf("%d", &students[i].subj3);
+        scanf("%d", &subj3[i]);
         
         // Calculate grade
-        int avg = (students[i].subj1 + students[i].subj2 + students[i].subj3) / 3;
-        students[i].grade = calculate_grade(avg);
+        int avg = (subj1[i] + subj2[i] + subj3[i]) / 3;
+        grades[i] = calculate_grade(avg);
         printf("\n");
     }
     
@@ -44,8 +42,9 @@ int main() {
     printf("\nStudent Records:\n");
     printf("%-20s %-10s %-10s %-10s %-10s\n", "Name", "Subj1", "Subj2", "Subj3", "Grade");
     for (int i = 0; i < NUM_ITEMS; i++) {
-        printf("%-20s %-10d %-10d %-10d %-10c\n", students[i].name, students[i].subj1, students[i].subj2, students[i].subj3, students[i].grade);
+        printf("%-20s %-10d %-10d %-10d %-10c\n", names[i], subj1[i], subj2[i], subj3[i], grades[i]);
     }
     
     return 0;
 }
+
